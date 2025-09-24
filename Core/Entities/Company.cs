@@ -10,6 +10,7 @@ namespace Core.Entities
 
         // Relations
         public ICollection<Job> Jobs { get; set; } = new List<Job>();
+        
     }
         
 }

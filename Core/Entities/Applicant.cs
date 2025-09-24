@@ -3,7 +3,7 @@
 namespace Core.Entities
 {
 
-    public class Candidate: BaseEntity
+    public class Applicant: BaseEntity
     {
       
       
