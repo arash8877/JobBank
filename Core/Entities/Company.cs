@@ -3,12 +3,13 @@
 namespace Core.Entities
 {
 
-    public class Company: BaseEntity
+    public class Company : BaseEntity
     {
-        [Key]
-        public long Id { get; set; }
-      
-        
+        public string Name { get; set; }
+        public CompanySize Size { get; set; }
+
+        // Relations
+        public ICollection<Job> Jobs { get; set; } = new List<Job>();
     }
         
 }
