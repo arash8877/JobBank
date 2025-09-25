@@ -1,6 +1,10 @@
 
+using backend.Core.Enums;
+using backend.Core.Entities;
 
-namespace Core.Entities
+
+
+namespace backend.Core.Entities
 {
 
     public class Company : BaseEntity
@@ -10,7 +14,7 @@ namespace Core.Entities
 
         // Relations
         public ICollection<Job> Jobs { get; set; } = new List<Job>();
-        
+
     }
-        
+
 }

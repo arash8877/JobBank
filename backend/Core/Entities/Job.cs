@@ -1,6 +1,7 @@
+using backend.Core.Enums;
+using backend.Core.Entities;
 
-
-namespace Core.Entities
+namespace backend.Core.Entities
 {
 
     public class Job : BaseEntity

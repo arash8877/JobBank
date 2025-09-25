@@ -1,6 +1,6 @@
 
 
-namespace Core.Entities
+namespace backend.Core.Entities
 {
 
     public class Applicant : BaseEntity
@@ -10,7 +10,6 @@ namespace Core.Entities
         public string Email { get; set; }
         public string Phone { get; set; }
         public string CoverLetter { get; set; }
-        public string ResumeUrl { get; set; }
         public string ResumeUrl { get; set; }
 
         // Relations

@@ -1,4 +1,6 @@
 
+using Microsoft.EntityFrameworkCore;
+using backend.Core.Entities;
 
 namespace backend.Core.Context
 {

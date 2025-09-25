@@ -1,6 +1,6 @@
 
 
-namespace Core.Enums
+namespace backend.Core.Enums
 {
 
     public enum CompanySize

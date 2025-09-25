@@ -1,6 +1,8 @@
 
 
-namespace Core.Entities
+using System.ComponentModel.DataAnnotations;
+
+namespace backend.Core.Entities
 {
 
     public abstract class BaseEntity
