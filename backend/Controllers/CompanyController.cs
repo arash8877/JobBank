@@ -1,4 +1,5 @@
 using backend.Core.Context;
+using backend.Core.Dtos.Company;
 using backend.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,23 +23,9 @@ namespace backend.Controllers
         [HttpPost]
         [Route("create")]
 
-        public async Task<IActionResult> CreateCompany([FromBody] Company company)
+        public async Task<IActionResult> CreateCompany([FromBody] CompanyCreateDto dto)
         {
-            if (company == null)
-            {
-                return BadRequest("Company data is null.");
-            }
-
-            try
-            {
-                await _context.Companies.AddAsync(company);
-                await _context.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetCompanyById), new { id = company.Id }, company);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+         
         }
 
 
