@@ -1,6 +1,7 @@
 using AutoMapper;
 using backend.Core.Entities;
 using backend.Core.Dtos.Company;
+using backend.Core.Dtos.Job;
 
 namespace backend.Core.AutoMapperConfig
 {
@@ -13,6 +14,7 @@ namespace backend.Core.AutoMapperConfig
             CreateMap<Company, CompanyGetDto>();
 
             // Job
+            CreateMap<JobCreateDto, Job>();
 
             // Applicant
         }
