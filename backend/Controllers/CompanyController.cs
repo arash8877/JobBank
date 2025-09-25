@@ -33,13 +33,22 @@ namespace backend.Controllers
             Company newCompany = _mapper.Map<Company>(dto);
             await _context.Companies.AddAsync(newCompany);
             await _context.SaveChangesAsync();
-            
+
             return Ok("Company created successfully");
-         
+
         }
 
 
         // Read
+        [HttpGet]
+        [Route("get")]
+        public async Task<ActionResult<IEnumerable<CompanyGetDto>>> GetCompanies()
+        {
+            var companies = await _context.Companies.ToListAsync();
+            var companiesDto = _mapper.Map<IEnumerable<CompanyGetDto>>(companies);
+
+            return Ok(companiesDto);
+        }
 
         // Update
 
