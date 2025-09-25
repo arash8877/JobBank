@@ -15,6 +15,8 @@ namespace backend.Core.AutoMapperConfig
 
             // Job
             CreateMap<JobCreateDto, Job>();
+            CreateMap<Job, JobGetDto>()
+                .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Company.Name));
 
             // Applicant
         }
