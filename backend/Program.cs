@@ -1,7 +1,9 @@
-// using backend.Core.AutoMapperConfig;
-using backend.Core.Context; // namespace for AppDbContext
+using backend.Core.AutoMapperConfig;
+using backend.Core.Context; 
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Microsoft.OpenApi.Models;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +14,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 // ==========================================================
 
-// Automapper Configuration (commented out)
-// builder.Services.AddAutoMapper(typeof(AutoMapperConfigProfile));
+// Automapper Configuration 
+builder.Services.AddAutoMapper(typeof(AutoMapperConfigProfile));
 
 builder.Services
     .AddControllers()
@@ -22,11 +24,25 @@ builder.Services
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
-// Endpoints / Swagger configuration (Swagger commented out)
+//================================ Endpoints / Swagger configuration ==========================
 builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseCors(options =>
+{
+    options
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 // ==================== Optional: Test DB connection endpoint ====================
 // This endpoint checks if your DB is reachable and returns sample data
