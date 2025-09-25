@@ -1,0 +1,2 @@
+# Ignore local development secrets
+backend/appsettings.Development.json
