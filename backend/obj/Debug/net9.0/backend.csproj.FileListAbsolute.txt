@@ -161,3 +161,8 @@
 /Users/elahe/Documents/Arash-code/Net/jobBank/backend/obj/Debug/net9.0/backend.pdb
 /Users/elahe/Documents/Arash-code/Net/jobBank/backend/obj/Debug/net9.0/backend.genruntimeconfig.cache
 /Users/elahe/Documents/Arash-code/Net/jobBank/backend/obj/Debug/net9.0/ref/backend.dll
+/Users/elahe/Documents/Arash-code/Net/jobBank/backend/bin/Debug/net9.0/AutoMapper.dll
+/Users/elahe/Documents/Arash-code/Net/jobBank/backend/bin/Debug/net9.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/elahe/Documents/Arash-code/Net/jobBank/backend/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/elahe/Documents/Arash-code/Net/jobBank/backend/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/elahe/Documents/Arash-code/Net/jobBank/backend/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll

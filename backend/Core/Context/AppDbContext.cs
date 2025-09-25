@@ -19,15 +19,19 @@ namespace backend.Core.Context
             base.OnModelCreating(modelBuilder);
 
             // Configure relationships and constraints if needed
-            // modelBuilder.Entity<Company>()
-            //     .HasOne(c => c.Jobs)
-            //     .WithOne(j => j.Company)
-            //     .HasForeignKey(j => j.CompanyId);
+            modelBuilder.Entity<Company>()
+                .Property(c => c.Size)
+                .HasConversion<string>();
 
             modelBuilder.Entity<Job>()
                 .HasOne(j => j.Company)
                 .WithMany(c => c.Jobs)
                 .HasForeignKey(j => j.CompanyId);
+            
+            modelBuilder.Entity<Job>()
+                .Property(j => j.Level)
+                .HasConversion<string>();
+                
 
             modelBuilder.Entity<Applicant>()
                 .HasOne(a => a.Job)
