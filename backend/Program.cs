@@ -1,17 +1,18 @@
 // using backend.Core.AutoMapperConfig;
-using backend.Core.Context;
+using backend.Core.Context; // namespace for AppDbContext
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// DB Configuration
+// ==================== DB Configuration ====================
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("local"));
 });
+// ==========================================================
 
-// Automapper Configuration
+// Automapper Configuration (commented out)
 // builder.Services.AddAutoMapper(typeof(AutoMapperConfigProfile));
 
 builder.Services
@@ -21,18 +22,36 @@ builder.Services
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Endpoints / Swagger configuration (Swagger commented out)
 builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-//     app.UseSwagger();
-//     app.UseSwaggerUI();
-// }
+// ==================== Optional: Test DB connection endpoint ====================
+// This endpoint checks if your DB is reachable and returns sample data
+app.MapGet("/test-db", async (AppDbContext db) =>
+{
+    try
+    {
+        // Check if DB can connect
+        bool canConnect = await db.Database.CanConnectAsync();
+
+        // Fetch up to 5 companies (safe sample)
+        var companies = await db.Companies.Take(5).ToListAsync();
+
+        return Results.Ok(new
+        {
+            Success = canConnect,
+            Companies = companies
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+// =============================================================================
 
 app.UseCors(options =>
 {
@@ -43,7 +62,6 @@ app.UseCors(options =>
 });
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
