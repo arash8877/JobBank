@@ -1,4 +1,3 @@
-using backend.Core.Enums;
 
 namespace backend.Core.Dtos.Applicant
 {

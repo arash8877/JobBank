@@ -2,6 +2,7 @@ using AutoMapper;
 using backend.Core.Entities;
 using backend.Core.Dtos.Company;
 using backend.Core.Dtos.Job;
+using backend.Core.Dtos.Applicant;
 
 namespace backend.Core.AutoMapperConfig
 {
@@ -19,6 +20,9 @@ namespace backend.Core.AutoMapperConfig
                 .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Company.Name));
 
             // Applicant
+            CreateMap<ApplicantCreateDto, Applicant>();
+            CreateMap<Applicant, ApplicantGetDto>()
+                .ForMember(dest => dest.JobTitle, opt => opt.MapFrom(src => src.Job.Title));
         }
     }
 }
