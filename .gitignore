@@ -1,2 +1,7 @@
 # Ignore local development secrets
 backend/appsettings.Development.json
+
+# Ignore files in frontend
+/frontend/node_modules/
+/frontend/build/
+/frontend/.env
