@@ -5,10 +5,10 @@ import Navbar from "./components/navbar/Navbar";
 const App = () => {
   const { darkMode } = useContext(ThemeContext);
 
-  const appStyle = darkMode ? "app dark" : "app light";
+  const appStyles = darkMode ? "app dark" : "app";
 
   return (
-    <div className="appStyle">
+    <div className={appStyles}>
       <Navbar />
       <div className="wrapper">Routes</div>
     </div>
