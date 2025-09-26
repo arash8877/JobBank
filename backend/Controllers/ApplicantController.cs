@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using AutoMapper;
 using backend.Core.Context;
 using backend.Core.Dtos.Applicant;
@@ -68,6 +69,25 @@ namespace backend.Controllers
 
             return Ok(applicantDtos);
         }
+
+        // Read (Download Resume pdf file)
+        [HttpGet]
+        [Route("download/{url}")]
+        public IActionResult DownloadResumePdf(string url)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Documents", "pdfs", url);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return NotFound("File not found.");
+            }
+
+            var pdfBytes = System.IO.File.ReadAllBytes(filePath);
+            var file = File(pdfBytes, "application/pdf", url);
+
+            return file;
+        }
+        
 
         // Update
 
