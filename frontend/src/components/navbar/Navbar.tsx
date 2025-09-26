@@ -50,3 +50,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+// Link from react-router-dom is used for client-side navigation without page reloads
+// means that it changes the browser’s address bar, but no component will render for that URL.
+// to render the component, we need to set up routes using react-router-dom’s Route and Routes components.
