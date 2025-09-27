@@ -1,18 +1,36 @@
-@import "../../mixins";
+.companies-header {
+  background: var(--bg-color, #fff);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; // small breathing space
 
-.companies {
-   .heading {
-      @include d-flex(row, space-between, center);
-      width: 100%;
-   }
-}
-.add-company {
-   width: 500px;
-   max-width: 100%;
-   @include d-flex(column, flex-start, center);
-   gap: 1rem;
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color1);
+    margin: 0;
+  }
 
-   * {
-      color: var(--text-color1);
-   }
+  .add-company-btn {
+    border-radius: 999px; // pill button
+    font-weight: 600;
+    text-transform: none;
+    white-space: nowrap; // prevent wrapping inside button
+  }
+
+  /* 🔥 Mobile-friendly */
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+
+    .add-company-btn {
+      align-self: stretch; // full width button
+      justify-content: center; // center icon + text
+    }
+  }
 }

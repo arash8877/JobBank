@@ -1,21 +1,6 @@
-import "./CompaniesGrid.scss";
-import { Box } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { GridColDef } from "@mui/x-data-grid/models";
-import moment from "moment";
 import { ICompany } from "../../types/globalTypes";
-
-const column: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 100 },
-  { field: "name", headerName: "Name", width: 200 },
-  { field: "size", headerName: "Size", width: 150 },
-  {
-    field: "createdAt",
-    headerName: "Creation Time",
-    width: 200,
-    renderCell: (params) => moment(params.row.createdAt).format("YYYY-MM-DD"),
-  },
-];
+import moment from "moment";
+import "./CompaniesGrid.scss";
 
 interface ICompaniesGridProps {
   data: ICompany[];
@@ -23,9 +8,34 @@ interface ICompaniesGridProps {
 
 const CompaniesGrid = ({ data }: ICompaniesGridProps) => {
   return (
-    <Box sx={{ width: "100%", height: 450 }} className="companies-grid">
-      <DataGrid rows={data} columns={column} getRowId={(row) => row.id} rowHeight={50} />
-    </Box>
+    <div className="companies-grid-container">
+      <div className="companies-grid-card">
+        <table className="companies-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Size</th>
+              <th>Creation Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((company) => (
+              <tr key={company.id}>
+                <td>{company.id}</td>
+                <td className="company-name">{company.name}</td>
+                <td>
+                  <span className={`badge size-${company.size.toLowerCase()}`}>
+                    {company.size}
+                  </span>
+                </td>
+                <td>{moment(company.createdAt).format("YYYY-MM-DD")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
