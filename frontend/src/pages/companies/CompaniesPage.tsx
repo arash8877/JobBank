@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Companies.scss"
 import httpModule from '../../helpers/httpModule'
 import { useNavigate } from "react-router-dom";
 import { ICompany } from "../../types/globalTypes";
