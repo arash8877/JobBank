@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Companies.scss"
+import CompaniesGrid from "../../components/companies/CompaniesGrid";
 import httpModule from '../../helpers/httpModule'
 import { useNavigate } from "react-router-dom";
 import { ICompany } from "../../types/globalTypes";
@@ -29,7 +30,7 @@ const CompaniesPage = () => {
       console.log(companies);
 
    return (
-      <div className="content comapnies">
+      <div className="content companies">
          <div className="heading">
             <h2>Companies</h2>
             <Button variant="outlined" onClick={() => redirect("/companies/add")}>
@@ -41,8 +42,8 @@ const CompaniesPage = () => {
          ) : companies.length === 0 ? (
             <h1>No Company</h1>
          ) : (
-            ""
-            // <CompaniesGrid data={companies} />
+            
+            <CompaniesGrid data={companies} />
          )}
       </div>
    );
