@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import ProgressBar from "./components/progressBar/ProgressBar";
 
 const HomePage = lazy(() => import("./pages/home/HomePage"));
+const CompaniesPage = lazy(() => import("./pages/companies/CompaniesPage"));
 
 const App = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -18,6 +19,9 @@ const App = () => {
         <Suspense fallback={<ProgressBar />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/companies">
+              <Route index element={<CompaniesPage />} />
+            </Route>
           </Routes>
         </Suspense>
       </div>
