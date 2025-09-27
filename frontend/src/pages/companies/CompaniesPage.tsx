@@ -1,9 +1,50 @@
-import React from 'react'
+import { useEffect, useState } from "react";
+import httpModule from '../../helpers/httpModule'
+import { useNavigate } from "react-router-dom";
+import { ICompany } from "../../types/globalTypes";
+import { Button, CircularProgress } from "@mui/material";
+import { Add } from "@mui/icons-material";
 
 const CompaniesPage = () => {
-  return (
-    <div>CompaniesPage</div>
-  )
-}
+   const [companies, setCompanies] = useState<ICompany[]>([]);
+   const [loading, setLoading] = useState<boolean>(false);
+   const redirect = useNavigate();
 
-export default CompaniesPage
+   useEffect(() => {
+      setLoading(true);
+      httpModule
+         .get<ICompany[]>("/Company/get")
+         .then((response) => {
+            setCompanies(response.data);
+            setLoading(false);
+         })
+         .catch((error) => {
+            alert("Error");
+            console.log(error);
+            setLoading(false);
+         });
+   }, []);
+
+      console.log(companies);
+
+   return (
+      <div className="content comapnies">
+         <div className="heading">
+            <h2>Companies</h2>
+            <Button variant="outlined" onClick={() => redirect("/companies/add")}>
+               <Add />
+            </Button>
+         </div>
+         {loading ? (
+            <CircularProgress size={100} />
+         ) : companies.length === 0 ? (
+            <h1>No Company</h1>
+         ) : (
+            ""
+            // <CompaniesGrid data={companies} />
+         )}
+      </div>
+   );
+};
+
+export default CompaniesPage;
