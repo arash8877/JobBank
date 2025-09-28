@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Companies.scss";
 import { ICreateCompanyDto } from "../../types/globalTypes";
-import {} from "@mui/material";
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material";
 import httpModule from "../../helpers/httpModule";
 
@@ -17,7 +16,7 @@ const AddCompany = () => {
     }
     httpModule
       .post("/Company/Create", company)
-      .then((response) => redirect("/companies"))
+      .then(() => redirect("/companies"))
       .catch((error) => console.log(error));
   };
 
@@ -26,33 +25,46 @@ const AddCompany = () => {
   };
 
   return (
-    <div className="content">
-      <div className="add-company">
+    <div className="add-company-container">
+      <div className="add-company-card">
         <h2>Add New Company</h2>
-        <TextField
-          autoComplete="off"
-          label="Company Name"
-          variant="outlined"
-          value={company.name}
-          onChange={(e) => setCompany({ ...company, name: e.target.value })}
-        />
-        <FormControl fullWidth>
-          <InputLabel>Company Size</InputLabel>
-          <Select
-            value={company.size}
-            label="Company Size"
-            onChange={(e) => setCompany({ ...company, size: e.target.value })}
-          >
-            <MenuItem value="Small">Small</MenuItem>
-            <MenuItem value="Medium">Medium</MenuItem>
-            <MenuItem value="Large">Large</MenuItem>
-          </Select>
-        </FormControl>
+        <div className="form-fields">
+          <TextField
+            autoComplete="off"
+            label="Company Name"
+            variant="outlined"
+            fullWidth
+            value={company.name}
+            onChange={(e) => setCompany({ ...company, name: e.target.value })}
+          />
+          <FormControl fullWidth>
+            <InputLabel>Company Size</InputLabel>
+            <Select
+              value={company.size}
+              label="Company Size"
+              onChange={(e) => setCompany({ ...company, size: e.target.value })}
+            >
+              <MenuItem value="Small">Small</MenuItem>
+              <MenuItem value="Medium">Medium</MenuItem>
+              <MenuItem value="Large">Large</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <div className="btns">
-          <Button variant="outlined" color="primary" onClick={handleClickSaveBtn}>
+          <Button
+            className="save-btn"
+            variant="contained"
+            color="primary"
+            onClick={handleClickSaveBtn}
+          >
             Save
           </Button>
-          <Button variant="outlined" color="secondary" onClick={handleClickBackBtn}>
+          <Button
+            className="back-btn"
+            variant="outlined"
+            color="secondary"
+            onClick={handleClickBackBtn}
+          >
             Back
           </Button>
         </div>
