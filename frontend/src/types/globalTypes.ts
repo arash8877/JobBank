@@ -21,7 +21,7 @@ export interface ICreateJobDto {
    level: string;
    companyId: string;
 }
-export interface ICandidate {
+export interface IApplicant {
    id: string;
    firstName: string;
    lastName: string;
@@ -32,7 +32,7 @@ export interface ICandidate {
    jobId: string;
    jobTitle: string;
 }
-export interface ICreateCandidateDto {
+export interface ICreateApplicantDto {
    firstName: string;
    lastName: string;
    email: string;
