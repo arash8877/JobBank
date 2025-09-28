@@ -78,3 +78,84 @@
     text-transform: none;
   }
 }
+
+
+/* 🔹 AddJobPage Styles */
+
+.add-job-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.add-job-card {
+  background: var(--bg-color, #fff);
+  color: var(--text-color1, #333);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-color1);
+  }
+
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    .save-btn {
+      border-radius: 8px;
+      font-weight: 600;
+      text-transform: none;
+      padding: 0.5rem 1.2rem;
+    }
+
+    .back-btn {
+      border-radius: 8px;
+      font-weight: 500;
+      text-transform: none;
+      padding: 0.5rem 1.2rem;
+    }
+  }
+}
+
+/* 🔥 Mobile-friendly */
+@media (max-width: 500px) {
+  .add-job-container {
+    padding: 1rem;
+  }
+
+  .add-job-card {
+    padding: 1.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .btns {
+      flex-direction: column;
+
+      .save-btn,
+      .back-btn {
+        width: 100%;
+      }
+    }
+  }
+}

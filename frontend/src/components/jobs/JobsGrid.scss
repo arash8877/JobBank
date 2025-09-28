@@ -53,12 +53,13 @@
       border-top: 1px solid rgba(0, 0, 0, 0.05);
       color: var(--text-color1);
       font-size: 0.95rem;
+      font-weight: 500;
       vertical-align: middle;
     }
 
     .job-title {
-      font-weight: 600;
-      color: var(--text-color1); // 🔥 fixed
+      font-weight: 500;
+      color: var(--text-color1); 
     }
   }
 }
