@@ -1,104 +1,63 @@
+/* 🔹 ApplicantsGrid Styles */
+
 .applicants-grid-container {
   width: 100%;
-  overflow-x: auto;
-  margin-top: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.applicants-grid-card {
+  height: 500px;
+  border-radius: 1rem;
+  overflow: hidden;
   background: var(--bg-color, #fff);
-  border-radius: 1rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
-  overflow: hidden;
-}
 
-.applicants-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  border-radius: 1rem;
-  overflow: hidden;
+  .MuiDataGrid-root {
+    border: none;
+    font-size: 0.9rem;
+    color: var(--text-color1);
 
-  thead {
-    background: var(--header-bg, var(--bg-color));
-
-    th {
-      padding: 1rem;
+    .MuiDataGrid-columnHeaders {
+      background: var(--header-bg, #f5f5f5);
       font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text-color1);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      white-space: nowrap;
+    }
+
+    .MuiDataGrid-row:nth-of-type(even) {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .MuiDataGrid-row:hover {
+      background: rgba(25, 118, 210, 0.08); // blue hover
+      transition: background 0.2s ease;
+    }
+
+    .MuiDataGrid-cell {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* 🔹 Extra padding ONLY for ID column */
+    .MuiDataGrid-columnHeader[data-field="id"],
+    .MuiDataGrid-cell[data-field="id"] {
+      padding-left: 1.5rem !important;
     }
   }
 
-  tbody {
-    tr {
-      transition: background 0.2s ease, transform 0.1s ease;
-
-      &:nth-child(even) {
-        background: rgba(0, 0, 0, 0.02);
-      }
-
-      &:hover {
-        background: rgba(0, 123, 255, 0.08);
-        transform: scale(1.01);
-      }
-    }
-
-    td {
-      padding: 1rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-      color: var(--text-color1);
-      font-size: 0.95rem;
-      font-weight: 500;
-      vertical-align: middle;
-    }
-
-    .applicant-title {
-      font-weight: 500;
-      color: var(--text-color1); 
-    }
+  .cell-truncate {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
-/* 🔹 Badge styles for seniority */
-.badge {
-  display: inline-block;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: capitalize;
+/* 🔹 Dark Mode Support */
+[data-theme="dark"] .applicants-grid-container {
+  background: var(--bg-color, #1e1e1e);
 
-  &.level-small {
-    background: #e0f7fa;
-    color: #00695c;
+  .MuiDataGrid-columnHeaders {
+    background: var(--header-bg, #2c2c2c);
   }
-  &.level-medium {
-    background: #fff8e1;
-    color: #ef6c00;
-  }
-  &.level-large {
-    background: #f3e5f5;
-    color: #6a1b9a;
-  }
-}
 
-/* 🔹 Mobile-friendly */
-@media (max-width: 600px) {
-  .applicants-table {
-    font-size: 0.85rem;
-
-    th,
-    td {
-      padding: 0.6rem;
-    }
-
-    .applicant-title {
-      font-size: 0.9rem;
-    }
+  .MuiDataGrid-cell {
+    color: var(--text-color1, #e0e0e0);
   }
 }

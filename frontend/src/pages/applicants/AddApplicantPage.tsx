@@ -1,111 +1,139 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Applicants.scss";
-import { ICreateApplicantDto, ICompany } from "../../types/globalTypes";
-import { TextField, FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material";
+import { ICompany, ICreateApplicantDto, ICreateCompanyDto, ICreateJobDto, IJob } from "../../types/globalTypes";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 import httpModule from "../../helpers/httpModule";
 
-const levelsArray: string[] = ["Junior", "Intern", "Mid", "Senior", "Lead", "Manager"];
+const AddApplicant = () => {
+   const [applicant, setApplicant] = useState<ICreateApplicantDto>({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      coverLetter: "",
+      jobId: "",
+   });
+   const [jobs, setJobs] = useState<IJob[]>([]);
+   const [pdfFile, setPdfFile] = useState<File | null>();
 
-const AddJobPage = () => {
-  const [applicant, setJob] = useState<ICreateApplicantDto>({ title: "", level: "", companyId: "" });
-  const [companies, setCompanies] = useState<ICompany[]>([]);
-  const redirect = useNavigate();
+   const redirect = useNavigate();
 
-  useEffect(() => {
-    httpModule
-      .get<ICompany[]>("/Company/Get")
-      .then((response) => {
-        setCompanies(response.data);
-      })
-      .catch((error) => {
-        alert("Error fetching companies");
-        console.log(error);
-      });
-  }, []);
+   useEffect(() => {
+      httpModule
+         .get<IJob[]>("/Job/Get")
+         .then((response) => {
+            setJobs(response.data);
+         })
+         .catch((error) => {
+            alert("Error");
+            console.log(error);
+         });
+   }, []);
 
-  const handleClickSaveBtn = () => {
-    if (applicant.title === "" || applicant.level === "" || applicant.companyId === "") {
-      alert("Fill all fields");
-      return;
-    }
-    httpModule
-      .post("/Job/Create", applicant)
-      .then(() => redirect("/Applicants"))
-      .catch((error) => console.log(error));
-  };
+   const handleClickSaveBtn = () => {
+      if (
+         applicant.firstName === "" ||
+         applicant.lastName === "" ||
+         applicant.email === "" ||
+         applicant.phone === "" ||
+         applicant.coverLetter === "" ||
+         applicant.jobId === "" ||
+         !pdfFile
+      ) {
+         alert("Fill all fields");
+         return;
+      }
+      const newApplicantFormData = new FormData();
+      newApplicantFormData.append("firstName", applicant.firstName);
+      newApplicantFormData.append("lastName", applicant.lastName);
+      newApplicantFormData.append("email", applicant.email);
+      newApplicantFormData.append("phone", applicant.phone);
+      newApplicantFormData.append("coverLetter", applicant.coverLetter);
+      newApplicantFormData.append("jobId", applicant.jobId);
+      newApplicantFormData.append("pdfFile", pdfFile);
+      httpModule
+         .post("/Applicant/Create", newApplicantFormData)
+         .then((responst) => redirect("/applicants"))
+         .catch((error) => console.log(error));
+   };
 
-  const handleClickBackBtn = () => {
-    redirect("/Applicants");
-  };
+   const handleClickBackBtn = () => {
+      redirect("/applicants");
+   };
 
-  return (
-    <div className="add-applicant-container">
-      <div className="add-applicant-card">
-        <h2>Add New Job</h2>
+   return (
+      <div className="content">
+         <div className="add-applicant">
+            <h2>Add New Applicant</h2>
+            <FormControl fullWidth>
+               <InputLabel>Job</InputLabel>
+               <Select
+                  value={applicant.jobId}
+                  label="Job"
+                  onChange={(e) => setApplicant({ ...applicant, jobId: e.target.value })}
+               >
+                  {jobs.map((item) => (
+                     <MenuItem key={item.id} value={item.id}>
+                        {item.title}
+                     </MenuItem>
+                  ))}
+               </Select>
+            </FormControl>
+            <TextField
+               autoComplete="off"
+               label="First Name"
+               variant="outlined"
+               value={applicant.firstName}
+               onChange={(e) => setApplicant({ ...applicant, firstName: e.target.value })}
+            />
+            <TextField
+               autoComplete="off"
+               label="Last Name"
+               variant="outlined"
+               value={applicant.lastName}
+               onChange={(e) => setApplicant({ ...applicant, lastName: e.target.value })}
+            />
+            <TextField
+               autoComplete="off"
+               label="Email"
+               variant="outlined"
+               value={applicant.email}
+               onChange={(e) => setApplicant({ ...applicant, email: e.target.value })}
+            />
+            <TextField
+               autoComplete="off"
+               label="Phone"
+               variant="outlined"
+               value={applicant.phone}
+               onChange={(e) => setApplicant({ ...applicant, phone: e.target.value })}
+            />
+            <TextField
+               autoComplete="off"
+               label="C V"
+               variant="outlined"
+               value={applicant.coverLetter}
+               onChange={(e) => setApplicant({ ...applicant, coverLetter: e.target.value })}
+               multiline
+            />
+            <input type="file" onChange={(event) => setPdfFile(event.target.files ? event.target.files[0] : null)} />
 
-        <div className="form-fields">
-          <TextField
-            autoComplete="off"
-            label="Job Title"
-            variant="outlined"
-            fullWidth
-            value={applicant.title}
-            onChange={(e) => setJob({ ...applicant, title: e.target.value })}
-          />
-
-          <FormControl fullWidth>
-            <InputLabel>Seniority</InputLabel>
-            <Select
-              value={applicant.level}
-              label="Seniority"
-              onChange={(e) => setJob({ ...applicant, level: e.target.value })}
-            >
-              {levelsArray.map((item) => (
-                <MenuItem key={item} value={item}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <FormControl fullWidth>
-            <InputLabel>Company</InputLabel>
-            <Select
-              value={applicant.companyId}
-              label="Company"
-              onChange={(e) => setJob({ ...applicant, companyId: e.target.value })}
-            >
-              {companies.map((item) => (
-                <MenuItem key={item.id} value={item.id}>
-                  {item.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-
-        <div className="btns">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleClickSaveBtn}
-            className="save-btn"
-          >
-            Save
-          </Button>
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick={handleClickBackBtn}
-            className="back-btn"
-          >
-            Back
-          </Button>
-        </div>
+            <div className="btns">
+               <Button variant="outlined" color="primary" onClick={handleClickSaveBtn}>
+                  Save
+               </Button>
+               <Button variant="outlined" color="secondary" onClick={handleClickBackBtn}>
+                  Back
+               </Button>
+            </div>
+         </div>
       </div>
-    </div>
-  );
+   );
 };
 
-export default AddJobPage;
+export default AddApplicant;

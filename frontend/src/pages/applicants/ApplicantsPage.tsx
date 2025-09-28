@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Applicants.scss";
-// import ApplicantsGrid from "../../components/Applicants/ApplicantsGrid";
+import ApplicantsGrid from "../../components/applicants/ApplicantsGrid";
 import httpModule from "../../helpers/httpModule";
 import { useNavigate } from "react-router-dom";
 import { IApplicant } from "../../types/globalTypes";
@@ -28,22 +28,22 @@ const ApplicantsPage = () => {
   }, []);
 
   return (
-    <div className="Applicants-page">
-      {/* Header */}
-      <div className="Applicants-header">
+    <div className="applicants-page">
+      {/* 🔹 Header */}
+      <div className="applicants-header">
         <h2>Applicants</h2>
         <Button
           variant="contained"
           startIcon={<Add />}
-          onClick={() => redirect("/Applicants/add")}
+          onClick={() => redirect("/applicants/add")}
           className="add-applicant-btn"
         >
           Add Applicant
         </Button>
       </div>
 
-      {/* Content */}
-      <div className="Applicants-body">
+      {/* 🔹 Content */}
+      <div className="applicants-body">
         {loading ? (
           <div className="loading-box">
             <CircularProgress size={60} />
@@ -58,15 +58,14 @@ const ApplicantsPage = () => {
             <Button
               variant="outlined"
               startIcon={<Add />}
-              onClick={() => redirect("/Applicants/add")}
+              onClick={() => redirect("/applicants/add")}
               className="empty-add-btn"
             >
               Add Applicant
             </Button>
           </div>
         ) : (
-          ""
-          // <ApplicantsGrid data={Applicants} />
+          <ApplicantsGrid data={Applicants} />
         )}
       </div>
     </div>
