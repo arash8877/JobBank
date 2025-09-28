@@ -2,25 +2,33 @@
   background: var(--bg-color, #fff);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem; 
-  margin-bottom: 1.5rem;
+  gap: 1rem;
 
   h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 700;
     color: var(--text-color1);
     margin: 0;
   }
 
-  .add-company-btn {
-    border-radius: 999px; // pill button
+  .add-job-btn {
+    border-radius: 999px; // pill-shaped button
     font-weight: 600;
     text-transform: none;
-    white-space: nowrap; // prevent wrapping inside button
+    padding: 0.5rem 1.2rem;
+    white-space: nowrap;
+    background: var(--primary-color, #007bff);
+    color: #fff;
+
+    &:hover {
+      background: var(--primary-hover, #0062cc);
+    }
   }
 
   /* 🔥 Mobile-friendly */
@@ -29,88 +37,44 @@
     align-items: flex-start;
     text-align: left;
 
-    .add-company-btn {
-      align-self: stretch; // full width button
-      justify-content: center; // center icon + text
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    .add-job-btn {
+      align-self: stretch; // full width
+      justify-content: center;
     }
   }
 }
 
-
-/* AddCompanyPage styles */
-
-.add-company-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
-}
-
-.add-company-card {
-  background: var(--bg-color, #fff);
-  color: var(--text-color1, #333);
-  border-radius: 1rem;
-  padding: 2rem;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+/* 🔹 Loading + Empty state */
+.loading-box,
+.empty-state {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-color1);
 
-  h2 {
-    margin: 0;
-    font-size: 1.8rem;
+  h3 {
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
     font-weight: 600;
-    text-align: center;
-    color: var(--text-color1);
   }
 
-  .form-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-color2, #666);
   }
 
-  .btns {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-
-    .save-btn {
-      border-radius: 8px;
-      font-weight: 600;
-      text-transform: none;
-    }
-
-    .back-btn {
-      border-radius: 8px;
-      font-weight: 500;
-      text-transform: none;
-    }
-  }
-}
-
-/* 🔥 Mobile-friendly */
-@media (max-width: 500px) {
-  .add-company-container {
-    padding: 1rem;
-  }
-
-  .add-company-card {
-    padding: 1.5rem;
-
-    h2 {
-      font-size: 1.5rem;
-    }
-
-    .btns {
-      flex-direction: column;
-
-      .save-btn,
-      .back-btn {
-        width: 100%;
-      }
-    }
+  .empty-add-btn {
+    margin-top: 1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-transform: none;
   }
 }

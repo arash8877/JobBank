@@ -3,11 +3,10 @@ import { ThemeContext } from "./context/theme.context";
 import Navbar from "./components/navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import ProgressBar from "./components/progressBar/ProgressBar";
-import JobsPage from "./pages/jobs/JobsPage";
-
 const HomePage = lazy(() => import("./pages/home/HomePage"));
 const CompaniesPage = lazy(() => import("./pages/companies/CompaniesPage"));
 const AddCompanyPage = lazy(() => import("./pages/companies/AddCompanyPage"));
+const JobsPage = lazy(() => import("./pages/jobs/JobsPage"));
 
 const App = () => {
   const { darkMode } = useContext(ThemeContext);
