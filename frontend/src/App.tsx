@@ -6,6 +6,7 @@ import ProgressBar from "./components/progressBar/ProgressBar";
 
 const HomePage = lazy(() => import("./pages/home/HomePage"));
 const CompaniesPage = lazy(() => import("./pages/companies/CompaniesPage"));
+const AddCompanyPage = lazy(() => import("./pages/companies/AddCompanyPage"));
 
 const App = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/companies">
               <Route index element={<CompaniesPage />} />
+              <Route path="/companies/add" element={<AddCompanyPage />} />
             </Route>
           </Routes>
         </Suspense>
