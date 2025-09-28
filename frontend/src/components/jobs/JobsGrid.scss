@@ -1,0 +1,101 @@
+.jobs-grid-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+}
+
+.jobs-grid-card {
+  background: var(--bg-color, #fff);
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.jobs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  thead {
+    background: var(--table-header-bg, #f1f3f5);
+
+    th {
+      padding: 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-color1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background 0.2s ease, transform 0.1s ease;
+
+      &:nth-child(even) {
+        background: rgba(0, 0, 0, 0.02); // subtle striping
+      }
+
+      &:hover {
+        background: rgba(0, 123, 255, 0.08);
+        transform: scale(1.01);
+      }
+    }
+
+    td {
+      padding: 1rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--text-color1);
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+
+    .job-title {
+      font-weight: 600;
+      color: var(--primary-color, #007bff);
+    }
+  }
+}
+
+/* 🔹 Badge styles for seniority */
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &.level-small {
+    background: #e0f7fa;
+    color: #00695c;
+  }
+  &.level-medium {
+    background: #fff8e1;
+    color: #ef6c00;
+  }
+  &.level-large {
+    background: #f3e5f5;
+    color: #6a1b9a;
+  }
+}
+
+/* 🔹 Mobile-friendly */
+@media (max-width: 600px) {
+  .jobs-table {
+    font-size: 0.85rem;
+
+    th, td {
+      padding: 0.6rem;
+    }
+
+    .job-title {
+      font-size: 0.9rem;
+    }
+  }
+}

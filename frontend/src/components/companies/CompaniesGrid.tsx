@@ -16,7 +16,7 @@ const CompaniesGrid = ({ data }: ICompaniesGridProps) => {
               <th>ID</th>
               <th>Name</th>
               <th>Size</th>
-              <th>Creation Time</th>
+              <th>Created at</th>
             </tr>
           </thead>
           <tbody>

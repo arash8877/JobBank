@@ -3,6 +3,7 @@ import { ThemeContext } from "./context/theme.context";
 import Navbar from "./components/navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import ProgressBar from "./components/progressBar/ProgressBar";
+import JobsPage from "./pages/jobs/JobsPage";
 
 const HomePage = lazy(() => import("./pages/home/HomePage"));
 const CompaniesPage = lazy(() => import("./pages/companies/CompaniesPage"));
@@ -23,6 +24,10 @@ const App = () => {
             <Route path="/companies">
               <Route index element={<CompaniesPage />} />
               <Route path="/companies/add" element={<AddCompanyPage />} />
+            </Route>
+            <Route path="/jobs">
+              <Route index element={<JobsPage />} />
+              {/* <Route path="/jobs/add" element={<AddJobPage />} /> */}
             </Route>
           </Routes>
         </Suspense>
