@@ -28,7 +28,7 @@ const ApplicantsPage = () => {
   }, []);
 
   return (
-    <div className="applicants-page">
+    <div>
       {/* 🔹 Header */}
       <div className="applicants-header">
         <h2>Applicants</h2>

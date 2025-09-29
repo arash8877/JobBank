@@ -40,6 +40,11 @@
     }
   }
 
+   .MuiDataGrid-columnSeparator {
+      display: none !important;
+    }
+
+
   .cell-truncate {
     display: block;
     max-width: 100%;
